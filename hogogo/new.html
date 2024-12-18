@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* General Page Styling */
+    body {
+      margin: 0;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Snowfall Animation */
+    .snowfall {
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(10px 10px at 10% 20%, white, transparent),
+        radial-gradient(15px 15px at 50% 60%, white, transparent),
+        radial-gradient(20px 20px at 70% 80%, white, transparent),
+        radial-gradient(10px 10px at 90% 30%, white, transparent),
+        radial-gradient(15px 15px at 30% 70%, white, transparent);
+      background-size: 100vw 100vh;
+      animation: snowfall 2s linear infinite;
+    }
+
+    @keyframes snowfall {
+      0% {
+        background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+      }
+      100% {
+        background-position: 20vw 100vh, 25vw 100vh, -15vw 100vh, 10vw 100vh, -10vw 100vh;
+      }
+    }
+
+    /* Container for Santa */
+    #container {
+      position: relative;
+      text-align: center;
+      z-index: 10;
+    }
+
+    /* Santa Image - Initially Hidden */
+    #santa {
+      width: 200px;
+      position: absolute;
+      bottom: -300px; /* Start off-screen */
+      left: 50%;
+      transform: translateX(-50%);
+      transition: bottom 1s ease-out; /* Smooth slide effect */
+    }
+
+    /* Optional: Add a fun bounce effect when Santa hovers */
+    #santa:hover {
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -10px); }
+    }
+
+    /* Styling the #k div to make the text larger and align it to the left */
+    #k {
+      font-size: 50px;
+      font-weight: bold;
+      color: white;
+      text-align: left;
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      transform: translateY(-50%);
+    }
+
+    #kk {
+      font-size: 50px;
+      font-weight: bold;
+      color: white;
+      text-align: left;
+      position: absolute;
+      top: 30%;
+      left: 10%;
+      transform: translateY(-50%);
+    }
+
+    /* Styling the #j (p element) to make the text italic, bold, red, huge, and positioned at the very top center */
+    #j {
+      font-size: 100px;
+      font-weight: bold;
+      font-style: italic;
+      color: red;
+      text-align: center;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Button Styling */
+    .button-help {
+      position: fixed;
+      top: 500px; /* 80px from the top */
+      left: 50%; /* Center horizontally */
+      transform: translateX(-50%); /* Proper centering */
+      padding: 15px 30px; /* Button padding */
+      font-size: 18px; /* Font size */
+      background-color: #008000; /* Christmas green background */
+      color: white; /* White text color */
+      border: none; /* No border */
+      border-radius: 5px; /* Rounded corners */
+      cursor: pointer; /* Pointer cursor on hover */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+    }
+
+    /* Button Hover Effect */
+    .button-help:hover {
+      background-color: #006400; /* Darker green on hover */
+    }
+
+    /* MP3 Player Styling */
+    audio {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%); /* Center horizontally */
+    }
+
+    .open-button {
+      position: absolute; /* Add this to make 'top' work */
+      top: 78%; /* Position it 78% from the top */
+      left: 50%; /* Center it horizontally */
+      transform: translateX(-50%); /* Adjust for perfect horizontal centering */
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #008000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .open-button:hover {
+      background-color: #006400;
+    }
+
+  </style>
+</head>
+<title>
+  Merry Christmas
+</title>
+<body>
+
+  <!-- Snowfall Container -->
+  <div class="snowfall"></div>
+
+  <!-- Text for Merry Christmas -->
+  <p id="j">Merry Christmas!</p>
+
+  <!-- Help Button -->
+  <button class="button-help" onclick="k()">Help</button>
+
+  <!-- Text for Days Remaining -->
+  <div id="k"></div>
+
+  <!-- Text for Christ is born -->
+  <p id="kk">Christ is born, Halleluyah</p>
+
+  <!-- MP3 Player with Autoplay and Loop -->
+  <audio controls autoplay loop>
+    <source src="jb.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Button to Write Christmas Wish -->
+  <button class="open-button" onclick="openFile()">Write Christmas Wish</button>
+
+  <script>
+    function k(){
+      alert('If the text are touching just unzoom')
+    }
+
+    let a = document.getElementById('k');
+    let o = new Date();
+    let w = o.getDate();
+    const z = 25 - w;
+    a.textContent = `Days remaining until Christmas: ${z}`;
+
+    // Background Colors for Day and Night
+    const dayBackground = '#87CEEB'; // Daytime sky blue color
+    const nightBackground = '#0a2a3b'; // Nighttime dark blue color
+
+    // Function to set the background based on time
+    function setBackground() {
+      const hour = new Date().getHours();
+      const body = document.body;
+
+      // If time is between 6 AM and 6 PM, show daytime background
+      if (hour >= 6 && hour < 18) {
+        body.style.backgroundColor = dayBackground; // Set daytime sky color
+      } else {
+        body.style.backgroundColor = nightBackground; // Set nighttime dark blue color
+      }
+    }
+
+    // Function to create Santa (pop out)
+    function createSanta() {
+      const container = document.createElement('div');
+      container.id = 'container';
+
+      const santa = document.createElement('img');
+      santa.id = 'santa';
+      santa.src = 'santa.png'; // Replace with your Santa image path
+      santa.alt = 'Santa';
+
+      container.appendChild(santa);
+      document.body.appendChild(container);
+
+      // Make Santa pop out (slide in from the bottom)
+      setTimeout(() => {
+        santa.style.bottom = '50px'; // Move Santa into view (pop-out)
+
+        // Move Santa down after 10 seconds to make him disappear
+        setTimeout(() => {
+          santa.style.bottom = '-300px'; // Slide Santa down (disappear)
+
+          // Destroy Santa after sliding down
+          setTimeout(() => {
+            container.remove(); // Remove Santa and his container from the DOM
+          }, 1000); // Wait for the slide effect to complete before removal
+        }, 10000); // Stay for 10 seconds
+      }, 0); // Immediate pop out on creation
+    }
+
+    // Wait for the DOM to load
+    document.addEventListener("DOMContentLoaded", () => {
+      // Set the background on load
+      setBackground();
+
+      // Automatically create Santa every 2 minutes
+      setInterval(createSanta, 120000);
+
+      // Create Santa immediately on load for demonstration
+      createSanta();
+    });
+
+    // Function to open the 'mdm.html' page
+    function openFile() {
+      window.location.href = 'mdm.html'; // Load 'mdm.html' file in the same window
+    }
+  </script>
+
+</body>
+</html>

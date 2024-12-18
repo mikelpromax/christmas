@@ -1,0 +1,11 @@
+<html>
+    <style>
+        body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: url('file:///C:/Users/User/Downloads/DALL%C2%B7E%202024-12-18%2021.02.22%20-%20A%20vibrant%20red%20background%20with%20the%20text%20\'MERRY%20CHRISTMAS\'%20in%20large,%20bold%20white%20letters%20stretching%20almost%20edge-to-edge%20across%20the%20design.%20The%20edges%20are%20.webp') no-repeat center center; 
+      background-size: cover; /* Ensures the image covers the entire screen */
+    }
+    </style>
+</html>>
